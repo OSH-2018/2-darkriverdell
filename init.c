@@ -12,6 +12,10 @@ void exe_cmd(char **cmds, int exe_cmd_num, int num_of_cmd, int* write_fd)
     int i;
     char* args[128];
     args[0] = cmds[exe_cmd_num];
+    if (*args[0] == ' ') {
+        args[0]++;
+    }
+        
     for (i = 0; *args[i]; i++)
         for (args[i+1] = args[i] + 1; *args[i+1]; args[i+1]++)
             if (*args[i+1] == ' ') {
@@ -107,6 +111,7 @@ int main() {
                  char *name = args[1];
                  for (i = 0; args[1][i] != '='; i++)
                      ;
+		 args[1][i] = '\0';
                  char *value = args[1]+i+1;
                  setenv(name, value, 1);
              }
