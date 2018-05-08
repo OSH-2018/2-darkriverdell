@@ -65,6 +65,10 @@ int main() {
         for (i = 0; cmd[i] != '\n'; i++)
             ;
         cmd[i] = '\0';
+
+	if (i == 0) 
+		continue;
+
              
         /* 拆解命令行 */
         cmds[0] = cmd;
@@ -90,10 +94,6 @@ int main() {
                 }
         args[i] = NULL;
         
-
-        /* 没有输入命令 */
-        if (!args[0])
-            continue;
 
         /* 内建命令 */
         if (strcmp(args[0], "cd") == 0) {
